@@ -2,8 +2,8 @@ FROM fedora:24
 
 MAINTAINER Christian González <christiangda@gmail.com>
 
-LABEL Description="The Go Programming Language docker image" Vendor="Christian González" Version="1.0.3"
-LABEL Build docker build --no-cache --rm --tag christiangda/golang:1.0.3 --tag christiangda/golang:latest .
+LABEL Description="The Go Programming Language docker image" Vendor="Christian González" Version="1.0.4"
+LABEL Build docker build --no-cache --rm --tag christiangda/golang:1.0.4 --tag christiangda/golang:latest .
 
 ENV container docker
 
@@ -26,9 +26,9 @@ ENV GOROOT "/usr/local/go"
 ENV PATH $GOROOT/bin:$PATH
 
 # Install godep
-ENV GOPATH "/usr/local/godep"
-RUN go get github.com/tools/godep
-ENV PATH $GOPATH/bin:$PATH
+# ENV GOPATH "/usr/local/godep"
+# RUN go get github.com/tools/godep
+# ENV PATH $GOPATH/bin:$PATH
 
 # run container service
 CMD ["/usr/local/go/bin/go", "version"]
