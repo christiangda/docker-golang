@@ -2,8 +2,8 @@ FROM fedora:24
 
 MAINTAINER Christian González <christiangda@gmail.com>
 
-LABEL Description="The Go Programming Language docker image" Vendor="Christian González" Version="1.0.0"
-LABEL Build docker build --no-cache --rm --tag christiangda/golang:1.0.0 --tag christiangda/golang:latest .
+LABEL Description="The Go Programming Language docker image" Vendor="Christian González" Version="1.0.2"
+LABEL Build docker build --no-cache --rm --tag christiangda/golang:1.0.2 --tag christiangda/golang:latest .
 
 ENV container docker
 
@@ -21,9 +21,8 @@ RUN dnf install -y --setopt=tsflags=nodocs --setopt=deltarpm=0 \
   tar -C /usr/local -xzf /tmp/go1.7.3.linux-amd64.tar.gz && \
   rm -rf /tmp/* /var/tmp/* /var/cache/dnf/* /var/log/anaconda/* /var/log/dnf.*
 
-# Copy golang.sh to configure profile.d
-COPY golang.sh /etc/profile.d/
-RUN source /etc/profile.d/golang.sh
+ENV GOROOT "/usr/local/go"
+ENV PATH $GOROOT/bin:$PATH
 
 # run container service
 CMD ["/usr/local/go/bin/go", "version"]
